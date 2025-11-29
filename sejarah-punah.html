@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lindungi Satwa Liar — Sejarah & Edukasi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+ /* RESET WAJIB */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* HERO FULL BLEED CROP */
+    .hero {
+      width: 100%;
+      height: 90vh; /* tinggi hero */
+      background-image: url("./img/Blue and White Modern Minimal Tour & Travel Agency Email Header (1920 x 850 px).png");
+      background-size: cover;     /* CROP */
+      background-position: center; 
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+  /* RESET & BOX-SIZING */
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;font-family:'Inter',sans-serif;color:#222;background:#E9F0E3;line-height:1.6}
+
+  /* THEME */
+  :root{
+    --green-dark:#113D1A;
+    --green-text:#2E5E1C;
+    --bg-light:#E9F0E3;
+    --gold:#E9C463;
+    --gold-matte:#e4c96f; /* hover matte */
+    --nav-height:64px;
+    --card-radius:14px;
+  }
+
+  /* NAVBAR (fixed) */
+  .topnav{
+    position:fixed;
+    inset:0 0 auto 0;
+    height:var(--nav-height);
+    background:var(--green-dark);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:12px 28px;
+    z-index:999;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+  }
+  .topnav .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:inherit;
+  }
+  .topnav svg{width:34px;height:34px;display:block;flex-shrink:0}
+  .logo-text{font-weight:700;font-size:1.05rem;letter-spacing:.6px}
+
+  /* ensure page content not hidden under navbar */
+  main{padding-top:calc(var(--nav-height) + 12px)}
+
+  /* HERO - crop style using background image */
+  .hero{
+    width:100%;
+    height:420px; /* cinematic */
+    background-image: url('./img/Blue and White Modern Minimal Tour & Travel Agency Email Header (1920 x 850 px).png');
+    background-size:cover;           /* CROP behavior */
+    background-position:center center;
+    display:flex;
+    align-items:flex-end;            /* text anchored lower */
+    justify-content:center;
+    color:#fff;
+  }
+  .hero-overlay{
+    width:100%;
+    padding:40px 20px 56px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.28) 60%, rgba(0,0,0,0.45) 100%);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .hero-inner{
+    max-width:1100px;
+    text-align:center;
+    color:#fff;
+  }
+  .hero h1{
+    margin:0;
+    font-family:'Playfair Display',serif;
+    font-size:2.4rem;
+    color:var(--gold);
+    letter-spacing:0.6px;
+  }
+  .hero p{
+    margin-top:10px;
+    margin-bottom:0;
+    max-width:720px;
+    color:#f3f3f1;
+    opacity:0.95;
+    font-size:1rem;
+  }
+  .divider{width:80px;height:4px;border-radius:3px;background:var(--gold);margin:14px auto 0}
+
+  /* LAYOUT WRAPPER */
+  .wrapper{
+    max-width:1000px;
+    margin:36px auto;
+    padding:0 20px 40px;
+  }
+
+  /* SECTION CARDS */
+  .card{
+    background:#fff;
+    padding:30px;
+    border-radius:var(--card-radius);
+    margin-bottom:30px;
+    box-shadow:0 10px 24px rgba(0,0,0,0.06);
+    border:1px solid rgba(0,0,0,0.06);
+  }
+  .card h2{
+    margin:0 0 14px 0;
+    font-family:'Playfair Display',serif;
+    color:var(--green-text);
+    font-size:1.4rem;
+  }
+  .card p{margin:0 0 12px 0;color:#333}
+  .card ul{margin:12px 0 0 18px;padding:0}
+
+  /* PLACEHOLDER IMAGE BOX (for you to replace) */
+  .photo-placeholder{
+    width:100%;
+    height:260px;
+    background:#e6e6e6;
+    border-radius:12px;
+    display:block;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#777;
+    font-style:italic;
+  }
+
+  /* NAV BUTTONS centered elegant */
+  .nav-elegant{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin:36px 0;
+    flex-wrap:wrap;
+  }
+  .nav-elegant a{
+    display:inline-block;
+    padding:12px 28px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    letter-spacing:0.3px;
+    background:#2f2f2f;
+    color:#fff;
+    transition:all .28s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  }
+  .nav-elegant a:hover{
+    background:var(--gold-matte);
+    color:#111;
+    box-shadow:0 8px 20px rgba(228,201,111,0.28);
+    transform:translateY(-3px);
+  }
+
+  /* FOOTER */
+  footer{
+    background:var(--green-dark);
+    color:#fff;
+    text-align:center;
+    padding:36px 16px;
+    margin-top:30px;
+  }
+
+  /* RESPONSIVE TWEAKS */
+  @media (max-width:880px){
+    .hero{height:360px}
+    .hero h1{font-size:1.7rem}
+    .card{padding:22px}
+  }
+  @media (max-width:520px){
+    .hero{height:320px}
+    .hero h1{font-size:1.45rem}
+    .nav-elegant a{padding:10px 18px;font-size:.95rem}
+  }
+  /* Dalam blok CSS Anda, cari bagian ini: */
+
+.topnav .brand img {
+    height: 32px;
+    display: block;
+    flex-shrink: 0;
+
+    /* ================================================= */
+    /* === FILTER WARNA KUNING YANG LEBIH KUAT === */
+    /* ================================================= */
+    filter: 
+        grayscale(100%)       /* Ubah ke hitam-putih sebagai dasar */
+        brightness(180%)      /* Jauh lebih terang agar ada "kilauan" kuning */
+        sepia(100%)           /* Beri corak hangat */
+        hue-rotate(0deg)      /* Mulai dari 0deg, ini cenderung ke oranye/kuning */
+        saturate(1000%);      /* Sangat tingkatkan saturasi untuk kuning pekat */
+    /* ================================================= */
+}
+</style>
+</head>
+<body>
+
+  <!-- NAV (fixed) -->
+   
+  <header class="topnav" role="banner">
+    <a href="index.html" class="brand" aria-label="Beranda - Perburuan Liar">
+        <img src="./img/image-Photoroom.png" alt="Logo Paw">         <span class="logo-text">PERBURUAN LIAR</span>
+    </a>
+</header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO: background-image with crop -->
+    <section class="hero" role="img" aria-label="Lindungi Satwa Liar">
+      <div class="hero-overlay">
+        <div class="hero-inner">
+          <div class="divider" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="wrapper">
+
+      <!-- Sejarah -->
+      <article class="card" id="sejarah">
+        <h2>📜 Perburuan Liar dalam Perspektif Sejarah</h2>
+        <p>Dari sudut pandang sejarah, perburuan liar bukan hanya masalah modern. Sejak masa kerajaan dan kolonial, perburuan memengaruhi populasi hewan, keseimbangan ekosistem, dan hubungan manusia dengan alam. Banyak satwa yang dulunya melimpah kini menjadi langka akibat eksploitasi tidak terkendali.</p>
+
+        <p>Tradisi yang diwariskan tanpa evaluasi dapat membuat praktik perburuan terus berlangsung, bukan karena benar, tetapi karena dianggap wajar oleh masyarakat tertentu.</p>
+
+        <ul>
+          <li><strong>Kulit</strong>: dipakai sebagai simbol status atau hiasan.</li>
+          <li><strong>Taring & Kuku</strong>: jimat atau perhiasan dalam kepercayaan tertentu.</li>
+          <li><strong>Organ Tubuh</strong>: digunakan dalam ramuan tradisional (tidak terbukti ilmiah).</li>
+        </ul>
+      </article>
+
+      <!-- Harimau Jawa -->
+      <article class="card" id="harimau">
+        <h2>🦁 Kasus Ikonik: Harimau Jawa</h2>
+        <img src="./img/ded.jpg" alt="Ilustrasi Harimau Jawa" style="width:100%;border-radius:12px;margin-bottom:18px;">
+        
+        <p>Harimau Jawa pernah menjadi predator puncak di Pulau Jawa. Namun perburuan liar, hilangnya habitat, dan konflik manusia menyebabkan penurunan populasi yang drastis. Catatan terakhir tercatat di Meru Betiri (1976) dan pada 1980-an IUCN menyatakan spesies ini punah.</p>
+
+        <ul>
+          <li>Hancurnya rantai makanan karena hilangnya predator puncak.</li>
+          <li>Penurunan keanekaragaman hayati.</li>
+          <li>Kehilangan nilai ekologis, budaya, dan moral.</li>
+        </ul>
+      </article>
+
+      <!-- Dampak Alam -->
+
+        <article class="card" id="dampak-alam">
+    <h2>🌍 Dampak Sejarah Perburuan terhadap Alam</h2>
+
+    <img src="./img/iiii.jpg" alt="Ilustrasi Ekosistem" style="width:100%;border-radius:12px;margin-bottom:18px;">
+    
+    <p>Tindakan perburuan liar di masa lalu meninggalkan dampak jangka panjang: hilangnya spesies, rusaknya rantai makanan, dan berkurangnya potensi penelitian maupun ekowisata.</p>
+
+    <ul>
+        <li><strong>Hilangnya Spesies</strong> — beberapa hewan punah karena eksploitasi berlebih.</li>
+        <li><strong>Rusaknya Rantai Makanan</strong> — predator berkurang, mangsa melonjak.</li>
+        <li><strong>Hilangnya Sumber Daya</strong> — peluang penelitian dan pariwisata berkurang.</li>
+    </ul>
+</article>
+
+    
+      <!-- Dampak Masyarakat -->
+<article class="card" id="dampak-masyarakat">
+  <h2>👥 Dampak Kepunahan bagi Masyarakat</h2>
+
+  <p>
+    Kepunahan bukan hanya persoalan ekologis; ia menimbulkan kerugian ekonomi
+    (ekowisata hilang), krisis moral, dan generasi berikut kehilangan kesempatan
+    melihat keanekaragaman asli.
+  </p>
+
+  <ul>
+    <li>Kerugian ekonomi jangka panjang.</li>
+    <li>Generasi baru hanya melihat satwa lewat cerita dan foto.</li>
+    <li>Tanggung jawab moral manusia terhadap ciptaan menjadi sorotan.</li>
+  </ul>
+</article>
+
+      <!-- NAV BUTTONS -->
+      <nav class="nav-elegant" aria-label="Navigasi terkait">
+        <a href="index.html">Beranda</a>
+        <a href="moral-agama.html">Agama</a>
+        <a href="hukum-satwa.html">PPKN</a>
+      </nav>
+
+    </div> <!-- /wrapper -->
+
+  </main>
+
+  <footer>
+    © 2025 Wildlife Protection • Edukasi & Informasi
+  </footer>
+
+</body>
+</html>

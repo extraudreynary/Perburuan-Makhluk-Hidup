@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perburuan Liar - Suara Konservasi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+/* 🌳 PALET WARNA BARU 
+    --primary-color: #38761D; (Hijau Hutan Gelap/Kuat)
+    --secondary-color: #F7D08A; (Kuning Keemasan/Peringatan/Aksen)
+    --dark-bg: #1A3A1A; (Sangat Gelap, Hijau Tua)
+    --light-bg: #EAF0E6; (Krem/Putih Gading)
+    --text-dark: #2C2C2C; (Teks Utama)
+    --text-light: #F0F0F0; (Teks pada background gelap)
+*/
+
+/* --- ROOT VARIABLES --- */
+:root {
+    --primary-color: #38761D;
+    --secondary-color: #F7D08A;
+    --dark-bg: #1A3A1A;
+    --light-bg: #EAF0E6;
+    --text-dark: #2C2C2C;
+    --text-light: #F0F0F0;
+}
+
+/* ===== GENERAL STYLE ===== */
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--text-dark); /* Teks utama lebih gelap */
+    background-color: var(--light-bg);
+}
+
+/* Mengatur ulang Header untuk estetika konservasi */
+header.masthead {
+    padding: 0; 
+    text-align: center;
+    color: white;
+}
+
+/* Navbar: Gelap, Kontras Tinggi */
+.navbar-dark {
+    background-color: var(--dark-bg) !important; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.navbar-brand, .nav-link {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    color: var(--text-light) !important; /* Memastikan link berwarna terang */
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+}
+
+/* Konten di bawah header */
+.bg-white {
+    background-color: white !important;
+}
+
+/* Tombol Aksi Utama */
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transition: all 0.3s ease;
+}
+.btn-primary-custom:hover {
+    background-color: #579C37; /* Sedikit lebih terang */
+    border-color: #579C37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    font-size: 2.8rem;
+    font-weight: 800; /* Ekstra bold */
+    color: var(--primary-color);
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--secondary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* ===== SERVICES (TOPIC) ===== */
+.card-service {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px; 
+    transition: transform 0.3s ease, box-shadow 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+    border: 1px solid rgba(0,0,0,0.05); 
+    position: relative; /* Untuk efek glare */
+    overflow: hidden; /* Untuk efek glare */
+}
+/* Efek Glare (Pencahayaan) - Anda membutuhkan JS yang sudah Anda sertakan */
+.card-service::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+.card-service:hover::before {
+    opacity: 1;
+}
+
+.card-service:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.service-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color); /* Ikon menggunakan warna peringatan */
+    transition: transform 0.3s ease;
+}
+
+.card-service:hover .service-icon {
+    transform: rotate(3deg) scale(1.05); /* Rotasi halus dan sedikit zoom */
+}
+
+/* Judul Card */
+.card-service h4 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.btn-outline-warning-custom {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+.btn-outline-warning-custom:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ===== PORTFOLIO (CONTENT) ===== */
+#portfolio {
+    background-color: white; /* Kontras dengan latar belakang umum */
+}
+
+.portfolio-item .card {
+    border: none;
+    transition: box-shadow 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.portfolio-item .card:hover {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important;
+}
+
+.portfolio-item img {
+    border-radius: 0; /* Biar ujung atas card yang rounded */
+    transition: transform 0.5s ease;
+    object-fit: cover;
+    height: 250px; 
+}
+.portfolio-item .card:hover img {
+    transform: scale(1.05);
+}
+
+
+/* Modal Video */
+.modal-content {
+    background-color: var(--dark-bg);
+    border: 3px solid var(--secondary-color);
+}
+
+/* ===== ABOUT (MISSION) ===== */
+#about {
+    background-color: var(--light-bg);
+}
+#about p.lead {
+    color: var(--text-dark);
+}
+
+/* ===== TEAM ===== */
+.team-member {
+    padding: 20px;
+}
+
+.team-member img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 5px solid var(--secondary-color); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(247, 208, 138, 0.8); /* Glow effect */
+}
+
+.team-member h4 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    margin-top: 10px;
+    color: var(--primary-color);
+}
+
+.team-member .social-icons i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+.team-member .social-icons i:hover {
+    color: var(--secondary-color);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    padding: 3rem 0;
+    text-align: center;
+}
+footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+footer a:hover {
+    color: white;
+}
+
+/* ===== Aesthetic Video Modal ===== */
+
+.video-modal .modal-content {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 0 25px rgba(212,162,63,0.35); /* gold glow */
+    animation: videoPop 0.35s ease-out;
+}
+
+@keyframes videoPop {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.video-modal .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.video-modal .modal-title {
+    font-weight: 600;
+    color: #2d442c; /* forest green */
+}
+
+.video-modal .btn-close {
+    background: none;
+}
+
+.video-modal iframe {
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+<body>
+  
+  <button 
+    class="btn"
+    data-bs-toggle="modal"
+    data-bs-target="#videoModal"
+    style="background:#d4a23f; color:white; font-weight:600; box-shadow:0 0 12px rgba(212,162,63,0.5);">
+    🎥 Tonton Video Edukasi
+</button>
+<!-- VIDEO MODAL -->
+<div class="modal fade video-modal" id="videoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Video Membuat Produk Non Pangan</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <iframe 
+            id="videoIframe"
+            width="100%" height="500"
+            src="https://www.youtube.com/embed/Ml4VH6XbbSg"
+            title="Produk Non Pangan"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const videoModal = document.getElementById('videoModal');
+    const videoIframe = document.getElementById('videoIframe');
+    const originalSrc = videoIframe.src;
+
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        videoIframe.src = '';
+        setTimeout(() => videoIframe.src = originalSrc, 150);
+    });
+
+});
+</script>
+
+<script>
+    // Pastikan kode dijalankan setelah DOM dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+
+        /* =====================================
+           1. MODAL VIDEO: Menghentikan Pemutaran
+           ===================================== */
+        const videoModal = document.getElementById('videoModal');
+        const videoIframe = document.getElementById('videoIframe');
+        
+        // Ambil URL dasar iframe (pastikan src di HTML adalah URL yang valid)
+        const originalIframeSrc = videoIframe.src;
+
+        if (videoModal && videoIframe) {
+            // Ketika modal ditutup (hidden.bs.modal event)
+            videoModal.addEventListener('hidden.bs.modal', function () {
+                // Atur ulang sumber iframe untuk menghentikan pemutaran video
+                videoIframe.src = originalIframeSrc; 
+            });
+
+            // Opsional: Pastikan URL video dimasukkan saat modal dibuka
+            // Anda mungkin ingin mendapatkan ID video dari atribut data-bs-id pada tombol jika Anda memiliki banyak video.
+            // Contoh sederhana: Asumsi ID video selalu "VIDEO_ID" dan perlu diganti di HTML Anda
+            // Contoh: videoIframe.src = "https://youtu.be/Ml4VH6XbbSg";
+        }
+
+        /* =====================================
+           2. CARD SERVICE: Efek Interaktif (Parallax & Glare)
+           ===================================== */
+        const cards = document.querySelectorAll('.card-service');
+
+        cards.forEach(card => {
+            let animationFrameId = null;
+
+            // Fungsi untuk menghitung dan menerapkan transformasi (Lebih halus dengan rAF)
+            const updateTransform = (x, y) => {
+                const rect = card.getBoundingClientRect();
+                const cx = rect.width / 2;
+                const cy = rect.height / 2;
+
+                // Hitung rotasi (maksimal 5 derajat)
+                const rotateX = ((y - cy) / cy) * -5; // Rotasi X dibalik
+                const rotateY = ((x - cx) / cx) * 5;
+
+                // Terapkan transformasi 3D dan scale
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+
+                // Terapkan properti Glare CSS
+                card.style.setProperty("--mx", `${(x / rect.width) * 100}%`);
+                card.style.setProperty("--my", `${(y / rect.height) * 100}%`);
+            };
+
+            const handleMouseMove = (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Hapus bingkai animasi yang tertunda jika ada
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+
+                // Minta bingkai animasi baru
+                animationFrameId = requestAnimationFrame(() => updateTransform(x, y));
+            };
+
+            const handleMouseLeave = () => {
+                // Batalkan frame yang mungkin masih tertunda
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+                // Atur ulang transformasi ke keadaan awal dengan transisi CSS
+                card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+            };
+
+            card.addEventListener('mousemove', handleMouseMove);
+            card.addEventListener('mouseleave', handleMouseLeave);
+        });
+
+    });
+</script>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <i class="fa-solid fa-paw me-2" style="color: var(--secondary-color); font-size: 1.5rem;"></i>
+        PERBURUAN LIAR
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto py-4 py-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Content</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead" style="margin:0; padding:0;">
+
+    <!-- gambar TANPA margin-top -->
+    <img src="./img/liar (1900 x 1010 px) (1850 x 1010 px) (1920 x 850 px) (1).png"
+         alt="Header Image"
+         class="w-100"
+         style="display:block; margin:0;">
+
+    <!-- card putih -->
+    <div class="container py-5 bg-white shadow-lg"
+         style="margin-top:-60px; border-radius:10px;">
+
+        <h1 class="mb-4 display-4" style="color:var(--text-light); font-weight:800;">............</h1>
+
+        <h1 class="mb-4 display-4"
+            style="color:var(--primary-color); font-weight:800; text-align:center;">
+            JANGAN BIARKAN MEREKA PUNAH
+        </h1>
+
+        <p class="lead mb-4" style="color:#6c757d;">
+            Sebuah seruan untuk melindungi kehidupan liar dari ancaman perburuan ilegal.
+        </p>
+
+        <a class="btn btn-primary-custom btn-lg" href="#services">
+            Telusuri Lebih Lanjut <i class="fa-solid fa-arrow-down ms-2"></i>
+        </a>
+
+    </div>
+</header>
+
+
+
+
+<hr class="my-5">
+<section id="services" class="py-5">
+  <!--topik-->
+  <div class="container">
+    <h2 class="section-title">Topik Utama</h2>
+    <div class="row text-center g-4">
+
+<!--sejarah-->
+      <div class="col-lg-4">
+    <div class="card-service">
+        <div class="service-icon"><i class="fa-solid fa-book-open"></i></div>
+        <h4>Jejak Kesalahan yang Tak Boleh Berulang</h4>
+        <p>Sejarah mencatat bahwa kerakusan manusia pernah memusnahkan spesies; masa depan menuntut kita untuk tidak mengulanginya.</p>
+        <a href="sejarah-punah.html" target="_blank" class="btn btn-outline-warning-custom btn-sm">Lihat Selengkapnya</a>
+    </div>
+</div>
+
+<div class="col-lg-4">
+    <div class="card-service">
+        <div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h4>Menjaga Satwa Adalah Tugas Warga Negara</h4>
+        <p>Perburuan liar adalah kejahatan terhadap negara, melanggar hukum, merugikan rakyat, dan mengkhianati Pancasila.</p>
+        <a href="hukum-satwa.html" target="_blank" class="btn btn-outline-warning-custom btn-sm">Lihat Selengkapnya</a>
+    </div>
+</div>
+
+<div class="col-lg-4">
+    <div class="card-service">
+        <div class="service-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+        <h4>Suara Moral terhadap Perburuan Liar</h4>
+        <p>Ajaran agama memanggil manusia sebagai penjaga ciptaan; merusak hewan berarti mengkhianati amanah Tuhan.</p>
+        <a href="moral-agama.html" target="_blank" class="btn btn-outline-warning-custom btn-sm">Lihat Selengkapnya</a>
+    </div>
+</div>
+
+  <script>
+    document.querySelectorAll('.card-service').forEach(card => {
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+
+        const rotateX = ((y - cy) / cy) * 5; /* Mengurangi rotasi */
+        const rotateY = ((cx - x) / cx) * 5;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`; /* Mengurangi scale */
+
+        // glare movement
+        card.style.setProperty("--mx", `${(x / rect.width) * 100}%`);
+        card.style.setProperty("--my", `${(y / rect.height) * 100}%`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+      });
+
+    });
+  </script>
+</section>
+<hr class="my-5">
+<section id="portfolio" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Konten Edukasi</h2>
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-lg-6 col-md-8 portfolio-item">
+        <div class="card h-100 shadow-sm">
+          <img src="img/Dark Green and White Organic Collage Garden Vlog YouTube Thumbnail.jpg" class="card-img-top" alt="Thumbnail Video Proyek Konservasi">
+          <div class="card-body text-center">
+            <h5 class="card-title" style="font-weight: 700;">Membuat Produk Non Pangan</h5>
+            <p class="card-text text-muted">
+              Menampilkan hasil proyek mata pelajaran PKWU: kreativitas, inovasi, dan proses produksi dalam pembuatan balsam sebagai produk non pangan.
+            </p>
+            <button type="button" class="btn btn-primary-custom btn-sm" data-bs-toggle="modal" data-bs-target="#videoModal">
+              Tonton Video <i class="fa-brands fa-youtube ms-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<hr class="my-5">
+
+
+<section id="about" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Misi Kami</h2>
+    <p class="text-center w-75 mx-auto lead" style="color: #495057;">
+    Menjaga kelestarian hewan dengan mencegah dan menolak segala bentuk perburuan liar, agar keseimbangan alam tetap terjaga untuk generasi sekarang dan masa depan.
+  </div>
+</section>
+<hr class="my-5">
+
+
+<section id="team" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Tim Konservasi</h2>
+    <div class="row text-center g-4">
+      <div class="col-lg-4 team-member">
+        <img src="./img/odri.jpg" alt="Foto Audrey Renata T.">
+        <h4>Audrey Renata T.</h4>
+        <p class="text-muted">Designer & Kreatif</p>
+        <div class="social-icons">
+             <i class="fa-brands fa-instagram"></i>
+        </div>
+      </div>
+      <div class="col-lg-4 team-member">
+        <img src="./img/dav.jpg" alt="Foto Edgar Davon S.">
+        <h4>Edgar Davon S.</h4>
+        <p class="text-muted">Developer & Pengembang Web</p>
+        <div class="social-icons">
+             <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+      <div class="col-lg-4 team-member">
+        <img src="./img/aurel.jpeg" alt="Foto Graciella Aurelia K.">
+        <h4>Graciella Aurelia K.</h4>
+        <p class="text-muted">Content Writer & Peneliti</p>
+        <div class="social-icons">
+             <i class="fa-brands fa-linkedin"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container">
+    <p class="mb-0">Dibuat dengan semangat konservasi</p>
+    <p style="font-size: 0.9rem;">&copy; 2025 Perburuan Liar - All Rights Reserved.</p>
+  </div>
+</footer>
+
+<div class="modal fade" id="videoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="ratio ratio-16x9">
+          <iframe id="videoIframe" src="https://www.youtube.com/embed/VIDEO_ID" title="Video PKWU" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const videoModal = document.getElementById('videoModal');
+    const videoIframe = document.getElementById('videoIframe');
+
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        // Mengganti src iframe dengan src yang sama untuk menghentikan pemutaran
+        var iframeSrc = videoIframe.src;
+        videoIframe.src = iframeSrc; 
+    });
+</script>
+</body>
+</html>
